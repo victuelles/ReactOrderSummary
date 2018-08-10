@@ -3,7 +3,22 @@ import { Segment,Grid, Image,Input,Label,Button,Container} from 'semantic-ui-rea
 import './App.css';
 
 class App extends Component {
+  state = {
+    showItemDetails: false,
+    showPromoCode: false
+  }
+  showItemDetailsToggle = () => {
+    this.setState(prevState => ({
+      showItemDetails: !prevState.showItemDetails
+    }))
+  }
+  showPromoCodeToggle = () => {
+    this.setState(prevState => ({
+      showPromoCode: !prevState.showPromoCode
+    }))
+  }
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
         <Container className="main">
@@ -43,7 +58,7 @@ class App extends Component {
                   $108.03</div>
                 </Grid.Column>
                 <Grid.Column>
-                    <a> 
+                    <a onClick={this.showItemDetailsToggle}> 
                     See item details <i className=" add icon" /></a> 
               </Grid.Column>
               </Grid.Row>
@@ -51,18 +66,18 @@ class App extends Component {
 
             <Grid.Row columns={1}>
               <Grid.Column>
-                    <a> 
+                    <a onClick={this.showPromoCodeToggle}>
                     Apply promo code <i className=" add icon" /></a> 
               </Grid.Column>
-
-              <Grid.Column>
-                <div className="ui sub header">Promo Code
-                </div>
-                <Input focus/>
-                <Button basic color='black'>Apply</Button>
-              </Grid.Column>
-
-
+              {this.state.showPromoCode &&
+                  <Grid.Column>
+                    <div className="ui sub header">Promo Code
+                    </div>
+                    <Input focus/>
+                    <Button basic color='black'>Apply</Button>
+                  </Grid.Column>
+              }
+     
               </Grid.Row>
 
 
