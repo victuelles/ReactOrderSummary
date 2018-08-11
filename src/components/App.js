@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Segment,Grid,Button,Container,Popup,Form} from 'semantic-ui-react'
 import './App.css';
 import ItemList from './ItemList'
+import { connect } from 'react-redux'
 
-
-//TO DO:
-// 1. Implement redux to MATCH promo code
-//    user should be able to enter a promo code “DISCOUNT” and on applying it, see a 10% discount reflect in the purchase summary. Use Redux for this
+//mapStatetoProps 
+const mapState = (state) => ({
+  promoCode: state.promoCode.data
+})
 
 class App extends Component {
   state = {
@@ -44,10 +45,10 @@ class App extends Component {
 
   onFormSubmit = (evt) => {
     evt.preventDefault();
-    console.log("onFormSubmit")
+  //  console.log("onFormSubmit",this.props.promoCode)
     const {subtotal,pickup_savings,taxes}=this.state;
-    // check for discount
-    if(this.state.promo_code==="DISCOUNT"){
+    // check for 'DISCOUNT' from redux promoCodes
+    if(this.state.promo_code===this.props.promoCode){
       const discount=this.state.estimated_total*0.1
        const estimated_total=+(( Number(subtotal)+Number(pickup_savings)+Number(taxes)-discount).toFixed(2))
 
@@ -72,7 +73,7 @@ class App extends Component {
     this.setState({
       promo_code: newCode
     })
-    console.log(this.state.promo_code)
+   
   }
 
   render() {
@@ -80,7 +81,7 @@ class App extends Component {
     const promoCodeSign=!this.state.showPromoCode?'icon add':'icon minus'
     let {subtotal,pickup_savings,taxes,zipcode,estimated_total,promo_code_accepted}=this.state;
     const hasSaving=pickup_savings<0;
-    console.log(this.state);
+   
     return (
       <React.Fragment>
         <Container className="main">
@@ -172,4 +173,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(mapState)(App);
