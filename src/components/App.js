@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
-import { Segment,Grid, Image,Input,Label,Button,Container,Item,Popup} from 'semantic-ui-react'
+import { Segment,Grid, Input,Button,Container,Popup} from 'semantic-ui-react'
 import './App.css';
-
+import ItemList from './ItemList'
 //TO DO:
 // 1. create a json file to use as data for state
 // 2. move item details to a new component for reuse
 // 3. Implement redux to MATCH promo code
 //    user should be able to enter a promo code “DISCOUNT” and on applying it, see a 10% discount reflect in the purchase summary. Use Redux for this
+// 4. List item details can have multiple items
 
 
+const items = [
+  {
+    id: '1',
+    title: 'Essentials by OFM',
+    description:
+      'ESS-3085 Racing Style Leather Gaming Chair, Red',
+    selling_price: '99.11',
+    retail_price: '102.96',
+    quantity:'1',
+    photoURL: 'https://i5.walmartimages.com/asr/e73e1252-642c-4473-93ea-fd3b564a7027_1.3e81ea58fa3042452fe185129a4a865f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'
+  },
+  {
+    id: '2',
+    title: 'Basics by Rom',
+    description:
+      'Big Joe Milano Bean Bag Chair, Multiple Colors - 32" x 28" x 25"',
+    selling_price: '29.98',
+    retail_price: '29.98',
+    quantity:'1',
+    photoURL: 'https://i5.walmartimages.com/asr/7a112091-197a-48d9-9e58-6503ee0041c2_1.ee22dbd743135855c15fa10d50f5ec7a.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'
+  }
+];
 
 class App extends Component {
   state = {
+    items: items,
     showItemDetails: false,
     showPromoCode: false,
     itemPhotoURL:'https://i5.walmartimages.com/asr/e73e1252-642c-4473-93ea-fd3b564a7027_1.3e81ea58fa3042452fe185129a4a865f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF'
@@ -84,29 +108,14 @@ class App extends Component {
                 <Grid.Column>
                    
                 </Grid.Column>
-                </Grid.Row>
-
-           {this.state.showItemDetails &&
-              <Grid.Row  >
-                <Grid.Column width={4}>
-                  <Item>
-                    <Item.Image size="tiny"  src={this.state.itemPhotoURL} />
-                  </Item>
-                </Grid.Column>
-                <Grid.Column width={12}>
-                  <Item>
-                    <Item.Content>
-                      <Item.Header >Essentials by OFM</Item.Header>
-                      <Item.Description>
-                      ESS-3085 Racing Style Leather Gaming Chair, Red
-                      </Item.Description>
-                      $99.11 Qty:1
-
-                    </Item.Content>
-                  </Item>
-                </Grid.Column>
               </Grid.Row>
-           }
+             
+              {this.state.showItemDetails && 
+
+                <ItemList items={this.state.items}  />
+              
+             }
+            
 
             <Grid.Row columns={1}>
               <Grid.Column>
