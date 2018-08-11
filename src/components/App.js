@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
-import { Segment,Grid, Image,Input,Label,Button,Container,Item} from 'semantic-ui-react'
+import { Segment,Grid, Image,Input,Label,Button,Container,Item,Popup} from 'semantic-ui-react'
 import './App.css';
+
+//TO DO:
+// 1. create a json file to use as data for state
+// 2. move item details to a new component for reuse
+// 3. Implement redux to MATCH promo code
+//    user should be able to enter a promo code “DISCOUNT” and on applying it, see a 10% discount reflect in the purchase summary. Use Redux for this
+
+
 
 class App extends Component {
   state = {
@@ -18,7 +26,7 @@ class App extends Component {
       showPromoCode: !prevState.showPromoCode
     }))
   }
-  
+
   render() {
     const itemDetailsSign=!this.state.showItemDetails?'icon add':'icon minus'
     const promoCodeSign=!this.state.showPromoCode?'icon add':'icon minus'
@@ -36,8 +44,16 @@ class App extends Component {
                 <Grid.Column  textAlign='right'  >
                       <strong>$102.96</strong>
                 </Grid.Column>
-                <Grid.Column>
-                  <a> Pickup savings</a>
+                <Grid.Column textAlign='left' >
+
+                    <Popup
+                        trigger={  <a> Pickup savings</a>}
+                        content="Picking up your order in the store helps cut costs, and we pass the savings on to you."
+                       
+                        position='bottom left'
+                      />
+
+                
                 </Grid.Column>
                 <Grid.Column  textAlign='right'  >
                     <div style={{color:'red'}}> <strong >-$3.85</strong></div>
