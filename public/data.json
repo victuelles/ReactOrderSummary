@@ -1,0 +1,27 @@
+{
+  "subtotal":"102.96",
+  "pickup_savings":"-3.85",
+  "taxes":"8.92",
+  "zipcode":"94587",
+  "items":[
+  {
+    "id": "1",
+    "title": "Essentials by OFM",
+    "description":
+      "ESS-3085 Racing Style Leather Gaming Chair, Red",
+    "selling_price": "99.11",
+    "retail_price": "102.96",
+    "quantity":"1",
+    "photoURL": "https://i5.walmartimages.com/asr/e73e1252-642c-4473-93ea-fd3b564a7027_1.3e81ea58fa3042452fe185129a4a865f.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF"
+  },
+  {
+    "id": "2",
+    "title": "'Basics by Rom",
+    "description":
+    "Big Joe Milano Bean Bag Chair, Multiple Colors - 32\" x 28\" x 25\"",
+    "selling_price": "29.98",
+    "retail_price": "29.98",
+    "quantity":"1",
+    "photoURL": "https://i5.walmartimages.com/asr/7a112091-197a-48d9-9e58-6503ee0041c2_1.ee22dbd743135855c15fa10d50f5ec7a.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF"
+  }]
+}
